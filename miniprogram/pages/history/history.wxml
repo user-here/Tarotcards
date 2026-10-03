@@ -1,0 +1,50 @@
+<cosmos />
+<nav-bar title="占卜记录" />
+
+<view class="wrap">
+  <block wx:if="{{list.length}}">
+    <view class="top">
+      <text class="muted">共 {{list.length}} 条 · 长按可删除</text>
+      <text class="clear" bindtap="clearAll">清空</text>
+    </view>
+    <view
+      wx:for="{{list}}"
+      wx:key="id"
+      class="rec panel fade-up tap"
+      hover-class="tap-hover"
+      style="animation-delay: {{index < 10 ? index * 0.05 : 0}}s;"
+      data-id="{{item.id}}"
+      bindtap="open"
+      bindlongpress="remove"
+    >
+      <view class="fan">
+        <image
+          wx:for="{{item.thumbs}}"
+          wx:for-item="t"
+          wx:for-index="ti"
+          wx:key="ti"
+          class="fan-img f{{ti}} {{t.rev ? 'rev' : ''}}"
+          src="{{t.src}}"
+          mode="aspectFill"
+        />
+      </view>
+      <view class="rec-body">
+        <view class="rec-meta">
+          <text class="rec-spread">{{item.spread}}</text>
+          <text class="rec-topic">{{item.topic}}</text>
+        </view>
+        <view class="rec-q serif">{{item.question}}</view>
+        <view class="rec-names">{{item.names}}</view>
+        <view class="rec-time">{{item.time}}</view>
+      </view>
+    </view>
+  </block>
+
+  <view wx:elif="{{loaded}}" class="empty fade-up">
+    <image class="empty-img" src="/assets/card-back.jpg" mode="aspectFill" />
+    <view class="empty-t serif">还没有占卜记录</view>
+    <view class="empty-s">每一次提问，都会在这里留下星光的痕迹</view>
+    <button class="btn btn-primary empty-btn" hover-class="btn-hover" bindtap="goHome">开始第一次占卜</button>
+  </view>
+  <view class="safe-bottom"></view>
+</view>

@@ -1,0 +1,45 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/mine/mine",
+    "pages/history/history",
+    "pages/guide/guide",
+    "pages/about/about"
+  ],
+  "subPackages": [
+    {
+      "root": "tarot",
+      "name": "tarot",
+      "pages": [
+        "pages/question/question",
+        "pages/draw/draw",
+        "pages/result/result",
+        "pages/daily/daily",
+        "pages/gallery/gallery",
+        "pages/card/card"
+      ]
+    }
+  ],
+  "preloadRule": {
+    "pages/index/index": {
+      "network": "all",
+      "packages": [
+        "tarot"
+      ]
+    }
+  },
+  "window": {
+    "navigationStyle": "custom",
+    "navigationBarTextStyle": "white",
+    "navigationBarBackgroundColor": "#0c0920",
+    "backgroundColor": "#0c0920",
+    "backgroundTextStyle": "light"
+  },
+  "usingComponents": {
+    "nav-bar": "/components/nav-bar/nav-bar",
+    "cosmos": "/components/cosmos/cosmos"
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json",
+  "lazyCodeLoading": "requiredComponents"
+}

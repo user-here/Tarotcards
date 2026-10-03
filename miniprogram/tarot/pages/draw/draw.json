@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "spread-layout": "/tarot/components/spread-layout/spread-layout"
+  },
+  "disableScroll": true
+}

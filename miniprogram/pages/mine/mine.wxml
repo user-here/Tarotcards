@@ -1,0 +1,73 @@
+<cosmos />
+<nav-bar title="我的星盘" />
+
+<view class="wrap">
+  <view class="profile fade-up">
+    <view class="emblem">
+      <view class="emblem-ring"></view>
+      <view class="icon icon-moon"></view>
+    </view>
+    <view class="p-name serif">星语旅人</view>
+    <view class="p-sub">每一次抽牌，都是与自己的一次对话</view>
+  </view>
+
+  <view class="stats panel fade-up d1">
+    <view class="stat">
+      <text class="n serif">{{readings}}</text>
+      <text class="l">占卜次数</text>
+    </view>
+    <view class="sep"></view>
+    <view class="stat">
+      <text class="n serif">{{streak}}</text>
+      <text class="l">连续翻牌</text>
+    </view>
+    <view class="sep"></view>
+    <view class="stat">
+      <text class="n serif">{{seen}}</text>
+      <text class="l">已收集</text>
+    </view>
+  </view>
+
+  <view class="collect panel fade-up d2 tap" hover-class="tap-hover" data-url="/tarot/pages/gallery/gallery" bindtap="go">
+    <view class="c-head">
+      <text class="serif c-title">图鉴收集</text>
+      <text class="c-num">{{seen}} / {{total}}</text>
+    </view>
+    <view class="c-bar"><view class="c-fill" style="width: {{percent}}%;"></view></view>
+    <view class="c-tip">{{percent >= 100 ? '你已集齐全部 78 张塔罗牌 ✦' : '抽到的牌会自动点亮，去集齐全部 78 张吧'}}</view>
+  </view>
+
+  <view wx:if="{{favorite}}" class="fav panel fade-up d3 tap" hover-class="tap-hover" bindtap="openFavorite">
+    <image class="fav-img" src="{{favorite.thumb}}" mode="aspectFill" />
+    <view class="fav-info">
+      <view class="fav-l">与你最有缘的牌</view>
+      <view class="fav-name serif">{{favorite.name}}</view>
+      <view class="fav-c">在你的占卜中出现了 {{favorite.count}} 次</view>
+    </view>
+    <view class="icon icon-chevron"></view>
+  </view>
+
+  <view class="menu panel fade-up d4">
+    <view class="row" hover-class="row-hover" data-url="/pages/history/history" bindtap="go">
+      <view class="icon icon-history"></view><text class="row-t">占卜记录</text><view class="icon icon-chevron"></view>
+    </view>
+    <view class="row" hover-class="row-hover" data-url="/tarot/pages/gallery/gallery" bindtap="go">
+      <view class="icon icon-cards"></view><text class="row-t">塔罗图鉴</text><view class="icon icon-chevron"></view>
+    </view>
+    <view class="row" hover-class="row-hover" data-url="/pages/guide/guide" bindtap="go">
+      <view class="icon icon-book"></view><text class="row-t">入门指南</text><view class="icon icon-chevron"></view>
+    </view>
+    <button class="row row-btn" hover-class="row-hover" open-type="share">
+      <view class="icon icon-share"></view><text class="row-t">分享给好友</text><view class="icon icon-chevron"></view>
+    </button>
+    <view class="row" hover-class="row-hover" data-url="/pages/about/about" bindtap="go">
+      <view class="icon icon-info"></view><text class="row-t">关于与声明</text><view class="icon icon-chevron"></view>
+    </view>
+    <view class="row" hover-class="row-hover" bindtap="clear">
+      <view class="icon icon-trash"></view><text class="row-t">清除本地数据</text><view class="icon icon-chevron"></view>
+    </view>
+  </view>
+
+  <view class="disclaimer">所有数据仅保存在你的手机本地</view>
+  <view class="safe-bottom"></view>
+</view>

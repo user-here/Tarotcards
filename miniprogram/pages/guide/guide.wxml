@@ -1,0 +1,23 @@
+<cosmos />
+<nav-bar title="入门指南" />
+
+<view class="wrap">
+  <view class="head fade-up">
+    <view class="h-title serif">认识塔罗</view>
+    <view class="h-sub">一面映照内心的镜子</view>
+  </view>
+
+  <view wx:for="{{sections}}" wx:key="title" class="sec panel fade-up d{{index + 1 > 6 ? 6 : index + 1}}">
+    <view class="sec-head" data-i="{{index}}" bindtap="toggle">
+      <text class="sec-num serif">{{index + 1 < 10 ? '0' : ''}}{{index + 1}}</text>
+      <text class="sec-title serif">{{item.title}}</text>
+      <view class="arrow {{item.open ? 'open' : ''}}"><view class="icon icon-chevron"></view></view>
+    </view>
+    <view wx:if="{{item.open}}" class="sec-body fade-in">
+      <view wx:for="{{item.paras}}" wx:for-item="p" wx:key="*this" class="para"><text>{{p}}</text></view>
+    </view>
+  </view>
+
+  <button class="btn btn-ghost cta" hover-class="btn-hover" bindtap="goGallery">浏览 78 张牌的含义</button>
+  <view class="safe-bottom"></view>
+</view>

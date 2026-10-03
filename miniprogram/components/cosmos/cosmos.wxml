@@ -1,0 +1,3 @@
+<view class="cosmos">
+  <image class="stars" src="/assets/stars.png" mode="aspectFill" />
+</view>

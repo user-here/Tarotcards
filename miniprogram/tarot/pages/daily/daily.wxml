@@ -1,0 +1,89 @@
+<cosmos />
+<nav-bar title="今日运势" solid="{{scrolled}}" />
+
+<view class="wrap">
+  <view class="head fade-up">
+    <view class="date">{{date}}</view>
+    <view class="title serif">{{flipped ? '今日之牌' : '翻开今日之牌'}}</view>
+    <view wx:if="{{streak > 0}}" class="streak">已连续翻牌 <text class="gold-text">{{streak}}</text> 天</view>
+  </view>
+
+  <view class="card-stage fade-up d1" bindtap="openCard">
+    <view class="halo {{flipped ? 'on' : ''}}"></view>
+    <view class="big {{flipped ? '' : 'float'}}">
+      <view class="flip {{flipped ? 'flipped' : ''}}">
+        <view class="face back"><image class="img" src="/assets/card-back.jpg" mode="aspectFill" /></view>
+        <view class="face front"><image class="img {{rev ? 'rev' : ''}}" src="{{card.image}}" mode="aspectFill" /></view>
+      </view>
+    </view>
+    <view wx:if="{{!flipped}}" class="flip-tip">轻触卡牌 · 揭晓今日指引</view>
+  </view>
+
+  <block wx:if="{{showInfo}}">
+    <view class="name-box fade-up">
+      <view class="name serif">{{card.name}}<text class="{{rev ? 'tag-rev' : 'tag-up'}} name-tag">{{rev ? '逆位' : '正位'}}</text></view>
+      <view class="en">{{card.en}} · {{card.element}}</view>
+      <view class="kw"><text wx:for="{{keywords}}" wx:key="*this" class="chip">{{item}}</text></view>
+    </view>
+
+    <view class="panel block fade-up d1">
+      <view class="overall">
+        <text class="overall-l serif">综合运势</text>
+        <view class="stars-row big-stars">
+          <view wx:for="{{stars}}" wx:key="*this" class="icon {{item <= overall ? 'icon-star-on' : 'icon-star-off'}}"></view>
+        </view>
+      </view>
+      <view class="scores">
+        <view wx:for="{{scores}}" wx:key="key" class="score">
+          <text class="score-name">{{item.name}}</text>
+          <view class="score-bar"><view class="score-fill" style="width: {{item.value * 20}}%;"></view></view>
+          <text class="score-v">{{item.value}}</text>
+        </view>
+      </view>
+    </view>
+
+    <view class="lucky fade-up d2">
+      <view class="lucky-item panel">
+        <view class="swatch" style="background: {{color.hex}};"></view>
+        <view>
+          <view class="lucky-l">幸运色</view>
+          <view class="lucky-v serif">{{color.name}}</view>
+        </view>
+      </view>
+      <view class="lucky-item panel">
+        <view class="lucky-num serif">{{number}}</view>
+        <view>
+          <view class="lucky-l">幸运数字</view>
+          <view class="lucky-v serif">{{number}}</view>
+        </view>
+      </view>
+    </view>
+
+    <view class="yiji panel fade-up d3">
+      <view class="yj">
+        <view class="yj-k yi">宜</view>
+        <view class="yj-list"><text wx:for="{{yi}}" wx:key="*this">{{item}}</text></view>
+      </view>
+      <view class="yj">
+        <view class="yj-k ji">忌</view>
+        <view class="yj-list"><text wx:for="{{ji}}" wx:key="*this">{{item}}</text></view>
+      </view>
+    </view>
+
+    <view class="panel block message fade-up d4">
+      <view class="msg-title serif">今日讯息</view>
+      <view class="msg-text">{{meaning}}</view>
+      <view class="msg-advice serif">— {{advice}}</view>
+    </view>
+
+    <view class="actions fade-up d5">
+      <button class="btn btn-primary" hover-class="btn-hover" open-type="share">分享今日之牌</button>
+      <view class="actions-row">
+        <button class="btn btn-ghost half" hover-class="btn-hover" bindtap="openCard">牌义详解</button>
+        <button class="btn btn-ghost half" hover-class="btn-hover" bindtap="goSpreads">去占卜</button>
+      </view>
+    </view>
+    <view class="disclaimer">每日运势仅供娱乐，愿你拥有美好的一天</view>
+  </block>
+  <view class="safe-bottom"></view>
+</view>

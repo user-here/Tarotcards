@@ -1,0 +1,26 @@
+<view class="layout" style="height: {{height}}rpx;">
+  <view
+    wx:for="{{slots}}"
+    wx:key="num"
+    class="slot {{deal ? 'deal' : ''}} {{active === index ? 'active' : ''}}"
+    style="left: {{item.left}}rpx; top: {{item.top}}rpx; width: {{cw}}rpx; height: {{ch}}rpx; animation-delay: {{index * 0.12}}s; z-index: {{item.rotate ? 5 : 1}};"
+    data-index="{{index}}"
+    bindtap="onTap"
+  >
+    <view class="rot" style="transform: rotate({{item.rotate}}deg);">
+      <view class="flip {{item.flipped ? 'flipped' : ''}}">
+        <view class="face back">
+          <image class="img" src="/assets/card-back.jpg" mode="aspectFill" />
+        </view>
+        <view class="face front">
+          <image wx:if="{{item.image}}" class="img {{item.rev ? 'rev' : ''}}" src="{{item.image}}" mode="aspectFill" />
+        </view>
+      </view>
+    </view>
+    <view wx:if="{{compact}}" class="num {{item.rotate ? 'num-cross' : ''}}">{{item.num}}</view>
+    <view wx:else class="label">
+      <view class="pos">{{item.name}}</view>
+      <view wx:if="{{showNames && item.flipped}}" class="cname fade-in">{{item.cardName}}{{item.rev ? '·逆' : ''}}</view>
+    </view>
+  </view>
+</view>

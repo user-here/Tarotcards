@@ -1,0 +1,71 @@
+.wrap {
+  padding: 0 32rpx;
+}
+
+.head {
+  padding: 8rpx 8rpx 36rpx;
+}
+
+.h-title {
+  font-size: 52rpx;
+  font-weight: 700;
+  letter-spacing: 10rpx;
+  color: var(--gold-2);
+}
+
+.h-sub {
+  font-size: 26rpx;
+  color: var(--muted);
+}
+
+.sec {
+  margin-bottom: 20rpx;
+  overflow: hidden;
+}
+
+.sec-head {
+  display: flex;
+  align-items: center;
+  height: 112rpx;
+  padding: 0 32rpx;
+}
+
+.sec-num {
+  font-size: 26rpx;
+  color: var(--gold);
+  margin-right: 20rpx;
+}
+
+.sec-title {
+  flex: 1;
+  font-size: 32rpx;
+  font-weight: 600;
+}
+
+.arrow {
+  transition: transform 0.3s;
+}
+
+.arrow.open {
+  transform: rotate(90deg);
+}
+
+.arrow .icon {
+  width: 32rpx;
+  height: 32rpx;
+}
+
+.sec-body {
+  padding: 0 32rpx 28rpx;
+}
+
+.para {
+  font-size: 27rpx;
+  line-height: 1.85;
+  color: var(--text-2);
+  margin-bottom: 16rpx;
+}
+
+.cta {
+  margin-top: 40rpx;
+}

@@ -1,0 +1,12 @@
+<view class="nav {{solid ? 'solid' : ''}}" style="height: {{navHeight}}px; padding-top: {{statusBar}}px;">
+  <view class="nav-inner" style="padding-right: {{sidePad}}px; padding-left: {{sidePad}}px;">
+    <view wx:if="{{back}}" class="nav-btn" style="width: {{sidePad}}px;" hover-class="nav-btn-hover" bindtap="onBack" aria-role="button" aria-label="{{isRoot ? '首页' : '返回'}}">
+      <view class="icon {{isRoot ? 'icon-home' : 'icon-back'}}"></view>
+    </view>
+    <view wx:else class="nav-left" style="width: {{sidePad}}px;">
+      <slot name="left"></slot>
+    </view>
+    <view class="nav-title serif">{{title}}<slot name="center"></slot></view>
+  </view>
+</view>
+<view style="height: {{navHeight}}px;"></view>

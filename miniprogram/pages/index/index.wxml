@@ -1,0 +1,103 @@
+<cosmos />
+<nav-bar back="{{false}}" solid="{{scrolled}}" title="{{scrolled ? '星语塔罗' : ''}}" />
+
+<view class="wrap">
+  <!-- 头部 -->
+  <view class="hero fade-up">
+    <view class="date">{{date}}</view>
+    <view class="brand serif">星语塔罗</view>
+    <view class="greet">{{greeting}}</view>
+  </view>
+
+  <!-- 每日一牌 -->
+  <view class="daily panel fade-up d1 tap" hover-class="tap-hover" bindtap="goDaily">
+    <view class="daily-glow"></view>
+    <view class="daily-card {{daily.revealed ? '' : 'floating'}}">
+      <image wx:if="{{daily.revealed}}" class="daily-img {{daily.rev ? 'rev' : ''}}" src="{{daily.thumb}}" mode="aspectFill" />
+      <image wx:else class="daily-img" src="/assets/card-back.jpg" mode="aspectFill" />
+    </view>
+    <view class="daily-info">
+      <view class="daily-label"><view class="icon icon-spark"></view>今日之牌</view>
+      <block wx:if="{{daily.revealed}}">
+        <view class="daily-name serif">{{daily.name}}<text class="{{daily.rev ? 'tag-rev' : 'tag-up'}} daily-tag">{{daily.rev ? '逆位' : '正位'}}</text></view>
+        <view class="stars-row daily-stars">
+          <text class="muted small">综合运势</text>
+          <view wx:for="{{stars}}" wx:key="*this" class="icon {{item <= daily.overall ? 'icon-star-on' : 'icon-star-off'}}"></view>
+        </view>
+        <view class="daily-kw">
+          <text wx:for="{{daily.keywords}}" wx:key="*this" class="chip">{{item}}</text>
+        </view>
+        <view class="daily-link">查看今日运势 ›</view>
+      </block>
+      <block wx:else>
+        <view class="daily-name serif">翻开今天的指引</view>
+        <view class="daily-desc">每天一张牌，看看宇宙想对你说什么</view>
+        <view class="daily-cta">立即揭晓</view>
+      </block>
+    </view>
+  </view>
+
+  <!-- 快捷入口 -->
+  <view class="entries fade-up d2">
+    <view class="entry tap" hover-class="tap-hover" data-url="/tarot/pages/gallery/gallery" bindtap="go">
+      <view class="entry-icon"><view class="icon icon-cards"></view></view>
+      <text>塔罗图鉴</text>
+    </view>
+    <view class="entry tap" hover-class="tap-hover" data-url="/pages/history/history" bindtap="go">
+      <view class="entry-icon"><view class="icon icon-history"></view></view>
+      <text>占卜记录</text>
+    </view>
+    <view class="entry tap" hover-class="tap-hover" data-url="/pages/guide/guide" bindtap="go">
+      <view class="entry-icon"><view class="icon icon-book"></view></view>
+      <text>入门指南</text>
+    </view>
+    <view class="entry tap" hover-class="tap-hover" data-url="/pages/mine/mine" bindtap="go">
+      <view class="entry-icon"><view class="icon icon-moon"></view></view>
+      <text>我的星盘</text>
+    </view>
+  </view>
+
+  <!-- 牌阵 -->
+  <view class="section-title fade-up d3">
+    <view class="t">选择牌阵</view>
+    <view class="more">静心 · 默念 · 抽牌</view>
+  </view>
+
+  <view class="spreads">
+    <view
+      wx:for="{{spreads}}"
+      wx:key="id"
+      class="spread panel fade-up d{{index + 3 > 6 ? 6 : index + 3}} tap"
+      hover-class="tap-hover"
+      data-id="{{item.id}}"
+      bindtap="goSpread"
+    >
+      <view class="mini">
+        <view
+          wx:for="{{item.rects}}"
+          wx:for-item="r"
+          wx:for-index="ri"
+          wx:key="ri"
+          class="mini-card"
+          style="left: {{r.left}}rpx; top: {{r.top}}rpx; width: {{r.width}}rpx; height: {{r.height}}rpx; transform: rotate({{r.rotate}}deg);"
+        ></view>
+      </view>
+      <view class="spread-body">
+        <view class="spread-head">
+          <text class="spread-name serif">{{item.name}}</text>
+          <text class="spread-tag">{{item.tag}}</text>
+        </view>
+        <view class="spread-sub">{{item.sub}}</view>
+        <view class="spread-desc">{{item.desc}}</view>
+      </view>
+      <view class="spread-count">
+        <text class="num serif">{{item.count}}</text>
+        <text class="unit">张</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="disclaimer"><text>塔罗是一面映照内心的镜子，结果仅供娱乐与自我探索参考
+真正决定未来的，始终是你自己</text></view>
+  <view class="safe-bottom"></view>
+</view>

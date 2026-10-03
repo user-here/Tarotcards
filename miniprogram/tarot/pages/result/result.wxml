@@ -1,0 +1,118 @@
+<cosmos />
+<nav-bar title="{{scrolled ? '塔罗解读' : ''}}" solid="{{scrolled}}" />
+
+<view wx:if="{{ready}}" class="wrap">
+  <view wx:if="{{shared}}" class="shared-banner fade-in">
+    <view class="icon icon-spark"></view>
+    <text>这是好友分享给你的塔罗解读</text>
+  </view>
+
+  <!-- 头部 -->
+  <view class="head fade-up">
+    <view class="head-meta">
+      <text class="meta-tag">{{reading.spread.name}}</text>
+      <text class="meta-tag">{{topicName}}</text>
+      <text class="meta-time">{{timeText}}</text>
+    </view>
+    <view class="head-q serif">{{record.question ? '“' + record.question + '”' : '心中默念的问题'}}</view>
+    <view wx:if="{{record.options && (record.options[0] || record.options[1])}}" class="head-opts">
+      <text>A：{{record.options[0] || '选项 A'}}</text>
+      <text>B：{{record.options[1] || '选项 B'}}</text>
+    </view>
+  </view>
+
+  <!-- 牌阵 -->
+  <view class="layout-box fade-up d1">
+    <spread-layout spread-id="{{record.spreadId}}" cards="{{layoutCards}}" deal="{{fresh}}" active="{{active}}" bind:cardtap="onCardTap" />
+    <view class="layout-tip">轻触牌面，查看对应解读</view>
+  </view>
+
+  <!-- 能量概览 -->
+  <view class="energy panel fade-up d2 {{reading.energy.level}}">
+    <view class="energy-top">
+      <view>
+        <view class="energy-label">整体能量</view>
+        <view class="energy-value serif">{{reading.energy.label}}</view>
+      </view>
+      <view class="energy-score">
+        <text class="score-num serif">{{reading.energy.score}}</text>
+        <text class="score-unit">/100</text>
+      </view>
+    </view>
+    <view class="bar"><view class="bar-fill" style="width: {{reading.energy.score}}%;"></view></view>
+    <view class="energy-desc">{{reading.energy.desc}}</view>
+    <view class="stats">
+      <view class="stat"><text class="stat-n serif">{{reading.majors}}</text><text class="stat-l">大阿卡纳</text></view>
+      <view class="stat"><text class="stat-n serif">{{reading.items.length - reading.reversed}}</text><text class="stat-l">正位</text></view>
+      <view class="stat"><text class="stat-n serif">{{reading.reversed}}</text><text class="stat-l">逆位</text></view>
+    </view>
+    <view class="elements">
+      <view wx:for="{{reading.elements}}" wx:key="key" class="el el-{{item.key}}">
+        <view class="el-dot"></view>
+        <text class="el-name">{{item.name}}</text>
+        <text class="el-count">{{item.count}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 逐张解读 -->
+  <view class="section-title fade-up d3"><view class="t">逐张解读</view></view>
+  <view
+    wx:for="{{reading.items}}"
+    wx:key="index"
+    id="item-{{index}}"
+    class="item panel fade-up {{active === index ? 'active' : ''}}"
+  >
+    <view class="item-head">
+      <view class="pos-badge">{{index + 1}}</view>
+      <view>
+        <view class="pos-name serif">{{item.pos.name}}</view>
+        <view class="pos-desc">{{item.pos.desc}}</view>
+      </view>
+    </view>
+    <view class="item-body">
+      <view class="item-card tap" hover-class="tap-hover" data-id="{{item.card.id}}" data-rev="{{item.rev}}" bindtap="openCard">
+        <image class="item-img {{item.rev ? 'rev' : ''}}" src="{{item.card.image}}" mode="aspectFill" />
+      </view>
+      <view class="item-info">
+        <view class="card-name serif">{{item.card.name}}<text class="{{item.rev ? 'tag-rev' : 'tag-up'}} name-tag">{{item.rev ? '逆位' : '正位'}}</text></view>
+        <view class="card-en">{{item.card.en}}</view>
+        <view class="kw"><text wx:for="{{item.keywords}}" wx:for-item="k" wx:key="*this" class="chip">{{k}}</text></view>
+      </view>
+    </view>
+    <view class="item-text">{{item.general}}</view>
+    <view wx:if="{{item.topical}}" class="item-topic">
+      <view class="topic-label">{{topicName}}指引</view>
+      <view class="topic-text">{{item.topical}}</view>
+    </view>
+  </view>
+
+  <!-- 综合解读 -->
+  <view class="section-title"><view class="t">综合解读</view></view>
+  <view class="summary panel">
+    <view wx:for="{{reading.summary}}" wx:key="*this" class="sum-p">{{item}}</view>
+    <view class="advice">
+      <view class="advice-label"><view class="icon icon-spark"></view>星语寄言</view>
+      <view class="advice-text serif">{{reading.keyAdvice}}</view>
+    </view>
+  </view>
+
+  <!-- 操作 -->
+  <view class="actions">
+    <block wx:if="{{shared}}">
+      <button class="btn btn-primary" hover-class="btn-hover" bindtap="home">我也来抽一次</button>
+    </block>
+    <block wx:else>
+      <button class="btn btn-primary" hover-class="btn-hover" open-type="share">
+        <view class="icon icon-share btn-icon"></view>分享给好友
+      </button>
+      <view class="actions-row">
+        <button class="btn btn-ghost half" hover-class="btn-hover" bindtap="again">再问一次</button>
+        <button class="btn btn-ghost half" hover-class="btn-hover" bindtap="home">返回首页</button>
+      </view>
+    </block>
+  </view>
+
+  <view class="disclaimer">塔罗呈现的是当下的能量趋势，而非注定的结局。结果仅供娱乐参考，请理性看待。</view>
+  <view class="safe-bottom"></view>
+</view>

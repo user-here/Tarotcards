@@ -1,0 +1,53 @@
+.nav {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  z-index: 100;
+  transition: background 0.3s;
+}
+
+.nav.solid {
+  background: rgba(14, 10, 34, 0.86);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: 0 1rpx 0 rgba(255, 255, 255, 0.06);
+}
+
+.nav-inner {
+  position: relative;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav-btn,
+.nav-left {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  padding-left: 24rpx;
+}
+
+.nav-btn .icon {
+  width: 44rpx;
+  height: 44rpx;
+}
+
+.nav-btn-hover {
+  opacity: 0.5;
+}
+
+.nav-title {
+  font-size: 32rpx;
+  font-weight: 600;
+  letter-spacing: 6rpx;
+  color: var(--text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

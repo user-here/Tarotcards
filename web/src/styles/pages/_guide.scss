@@ -1,0 +1,76 @@
+/* 由 miniprogram/pages/guide/guide.scss 转换 */
+.p-guide {
+  .wrap {
+    padding: 0 calc(32 * var(--rpx));
+  }
+
+  .head {
+    padding: calc(8 * var(--rpx)) calc(8 * var(--rpx)) calc(36 * var(--rpx));
+  }
+
+  .h-title {
+    font-size: calc(52 * var(--rpx));
+    font-weight: 700;
+    letter-spacing: calc(10 * var(--rpx));
+    color: var(--gold-2);
+  }
+
+  .h-sub {
+    font-size: calc(26 * var(--rpx));
+    color: var(--muted);
+  }
+
+  .sec {
+    margin-bottom: calc(20 * var(--rpx));
+    overflow: hidden;
+  }
+
+  .sec-head {
+    display: flex;
+    align-items: center;
+    height: calc(112 * var(--rpx));
+    padding: 0 calc(32 * var(--rpx));
+  }
+
+  .sec-num {
+    font-size: calc(26 * var(--rpx));
+    color: var(--gold);
+    margin-right: calc(20 * var(--rpx));
+  }
+
+  .sec-title {
+    flex: 1;
+    font-size: calc(32 * var(--rpx));
+    font-weight: 600;
+  }
+
+  .arrow {
+    transition: transform 0.3s;
+  }
+
+  .arrow.open {
+    transform: rotate(90deg);
+  }
+
+  .arrow .icon {
+    width: calc(32 * var(--rpx));
+    height: calc(32 * var(--rpx));
+  }
+
+  .sec-body {
+    padding: 0 calc(32 * var(--rpx)) calc(28 * var(--rpx));
+  }
+
+  .para {
+    font-size: calc(27 * var(--rpx));
+    line-height: 1.85;
+    color: var(--text-2);
+    margin-bottom: calc(16 * var(--rpx));
+  }
+
+  .cta {
+    margin-top: calc(40 * var(--rpx));
+  }
+}
+
+

@@ -1,0 +1,109 @@
+/* 仅网页端需要的样式 */
+
+.toast {
+  position: fixed;
+  left: 50%;
+  top: 45%;
+  z-index: 999;
+  max-width: 70vw;
+  padding: 18px 26px;
+  border-radius: 12px;
+  font-size: 14px;
+  color: #fff;
+  background: rgba(20, 15, 44, 0.92);
+  border: 1px solid rgba(230, 196, 126, 0.3);
+  transform: translate(-50%, -50%) scale(0.9);
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.2s;
+}
+
+.toast.show {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.dialog-mask {
+  position: fixed;
+  inset: 0;
+  z-index: 998;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(5, 3, 15, 0.6);
+  animation: fadeIn 0.2s ease both;
+}
+
+.dialog-mask.hide {
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.dialog {
+  width: min(80vw, 340px);
+  padding: 26px 24px 18px;
+  border-radius: 18px;
+  text-align: center;
+  background: #1a1438;
+  border: 1px solid rgba(230, 196, 126, 0.25);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+}
+
+.dialog-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--gold-2);
+}
+
+.dialog-content {
+  margin-top: 10px;
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--text-2);
+}
+
+.dialog-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 22px;
+}
+
+.dialog-btn {
+  flex: 1;
+  height: 42px;
+  border-radius: 21px;
+  font-size: 15px;
+}
+
+.dialog-btn.cancel {
+  color: var(--text-2);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.dialog-btn.ok {
+  color: #2a1d08;
+  font-weight: 600;
+  background: linear-gradient(135deg, #f8e3b0, #e6c47e 55%, #c99a52);
+}
+
+/* 页面切换 */
+.route-enter-active,
+.route-leave-active {
+  transition: opacity 0.25s ease;
+}
+
+.route-enter-from,
+.route-leave-to {
+  opacity: 0;
+}
+
+/* 桌面端：手机宽度的列两侧留一点暗色 */
+@media (min-width: 520px) {
+  body {
+    background: #07051a;
+  }
+
+  #app {
+    box-shadow: 0 0 80px rgba(0, 0, 0, 0.6);
+  }
+}

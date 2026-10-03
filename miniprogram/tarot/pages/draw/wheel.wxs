@@ -1,0 +1,79 @@
+// 牌轮手势：在视图层直接处理拖动与惯性，避免频繁 setData 带来的卡顿
+var FRAME = 16
+
+function now() {
+  return getDate().getTime()
+}
+
+function apply(ins, st) {
+  var wheel = ins.selectComponent('.wheel')
+  if (wheel) wheel.setStyle({ transform: 'rotate(' + st.angle + 'deg)' })
+}
+
+function spin(ins) {
+  var st = ins.getState()
+  if (!st.spinning) return
+  st.v = st.v * 0.955
+  st.angle = st.angle + st.v * FRAME
+  apply(ins, st)
+  if (Math.abs(st.v) < 0.004) {
+    st.spinning = false
+    return
+  }
+  ins.requestAnimationFrame(function () { spin(ins) })
+}
+
+function start(e, ins) {
+  var st = ins.getState()
+  var t = e.touches[0]
+  st.spinning = false
+  st.dragging = true
+  st.x0 = t.pageX
+  st.lastX = t.pageX
+  st.lastT = now()
+  st.v = 0
+  st.base = st.angle || 0
+}
+
+function move(e, ins) {
+  var st = ins.getState()
+  if (!st.dragging) return
+  var k = e.currentTarget.dataset.k || 0.15
+  var x = e.touches[0].pageX
+  var t = now()
+  var dt = t - st.lastT
+  if (dt > 0) st.v = st.v * 0.3 + ((x - st.lastX) * k / dt) * 0.7
+  st.lastX = x
+  st.lastT = t
+  st.angle = st.base + (x - st.x0) * k
+  apply(ins, st)
+}
+
+function end(e, ins) {
+  var st = ins.getState()
+  st.dragging = false
+  // 手指停顿后再抬起时不触发惯性
+  if (now() - st.lastT > 80) st.v = 0
+  if (Math.abs(st.v) > 0.01) {
+    st.v = Math.max(-1.6, Math.min(1.6, st.v))
+    st.spinning = true
+    ins.requestAnimationFrame(function () { spin(ins) })
+  }
+}
+
+// 页面通过改变 kick 属性触发一次入场旋转
+function kick(newVal, oldVal, ownerIns) {
+  if (!newVal) return
+  var st = ownerIns.getState()
+  st.angle = st.angle || 0
+  st.v = -0.9
+  st.spinning = true
+  ownerIns.requestAnimationFrame(function () { spin(ownerIns) })
+}
+
+module.exports = {
+  start: start,
+  move: move,
+  end: end,
+  kick: kick,
+}

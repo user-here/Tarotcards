@@ -1,0 +1,82 @@
+<cosmos />
+<nav-bar title="{{spread.name}}" />
+
+<view class="wrap">
+  <view class="intro fade-up">
+    <view class="intro-sub">{{spread.sub}}</view>
+    <view class="intro-desc">{{spread.desc}}</view>
+    <view class="intro-pos">
+      <view class="icon icon-spark"></view>
+      <text>{{positionNames}}</text>
+    </view>
+  </view>
+
+  <view class="block fade-up d1">
+    <view class="label serif">你想问的方向</view>
+    <view class="topics">
+      <view
+        wx:for="{{topics}}"
+        wx:key="key"
+        class="topic {{topic === item.key ? 'on' : ''}}"
+        data-key="{{item.key}}"
+        bindtap="pickTopic"
+      >{{item.name}}</view>
+    </view>
+  </view>
+
+  <view class="block fade-up d2">
+    <view class="label serif">写下你的问题 <text class="label-opt">（可选）</text></view>
+    <view class="field panel" wx:if="{{!meditating}}">
+      <textarea
+        class="textarea"
+        value="{{question}}"
+        placeholder="{{hint}}"
+        placeholder-class="ph"
+        maxlength="60"
+        auto-height
+        bindinput="onInput"
+      />
+      <view class="count">{{question.length}}/60</view>
+    </view>
+
+    <block wx:if="{{spread.needOptions && !meditating}}">
+      <view class="options">
+        <view class="opt panel">
+          <text class="opt-k serif">A</text>
+          <input class="opt-input" placeholder="选项 A，如：留在现在的公司" placeholder-class="ph" maxlength="16" value="{{optionA}}" bindinput="onOptionA" />
+        </view>
+        <view class="opt panel">
+          <text class="opt-k serif">B</text>
+          <input class="opt-input" placeholder="选项 B，如：接受新的offer" placeholder-class="ph" maxlength="16" value="{{optionB}}" bindinput="onOptionB" />
+        </view>
+      </view>
+    </block>
+  </view>
+
+  <view class="tips fade-up d3">
+    <view class="tips-title">提问小贴士</view>
+    <view class="tip">· 用“如何 / 怎样”代替“是不是 / 会不会”，答案会更有启发</view>
+    <view class="tip">· 一次只问一件事，越具体越好</view>
+    <view class="tip">· 聚焦你自己能改变的部分，而非他人的想法</view>
+  </view>
+
+  <view class="bottom-space"></view>
+</view>
+
+<view class="footer">
+  <button class="btn btn-primary" hover-class="btn-hover" bindtap="start">开始占卜</button>
+</view>
+
+<!-- 冥想过渡层 -->
+<view wx:if="{{meditating}}" class="meditate fade-in" bindtap="skipMeditate">
+  <view class="breath">
+    <view class="ring r1"></view>
+    <view class="ring r2"></view>
+    <view class="ring r3"></view>
+    <view class="core"><view class="icon icon-moon"></view></view>
+  </view>
+  <view class="m-title serif">深呼吸</view>
+  <view class="m-text">在心中默念你的问题</view>
+  <view class="m-question" wx:if="{{question}}">“{{question}}”</view>
+  <view class="m-skip">轻触屏幕继续</view>
+</view>

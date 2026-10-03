@@ -1,0 +1,33 @@
+<cosmos />
+<nav-bar title="关于与声明" />
+
+<view class="wrap">
+  <view class="logo-box fade-up">
+    <image class="logo" src="/assets/card-back.jpg" mode="aspectFill" />
+    <view class="name serif">星语塔罗</view>
+    <view class="ver">Version {{version}}</view>
+  </view>
+
+  <view class="panel sec fade-up d1">
+    <view class="t serif">关于</view>
+    <view class="p">星语塔罗是一款以塔罗牌为载体的心灵探索小工具。我们希望你在忙碌的日常中，留出片刻与自己对话，借由牌面上的象征，换一个角度看待生活。</view>
+  </view>
+
+  <view class="panel sec fade-up d2">
+    <view class="t serif">免责声明</view>
+    <view class="p">本程序所有占卜结果均由随机抽牌与预设牌义生成，仅供娱乐与自我探索参考，不构成任何医疗、法律、投资或人生决策建议。请理性看待，切勿迷信。</view>
+  </view>
+
+  <view class="panel sec fade-up d3">
+    <view class="t serif">隐私说明</view>
+    <view class="p">我们不收集你的任何个人信息。你的问题、占卜记录与每日一牌仅保存在你手机的本地缓存中，删除小程序或在“我的”页面清除数据后即会消失。</view>
+  </view>
+
+  <view class="panel sec fade-up d4">
+    <view class="t serif">图像来源</view>
+    <view class="p">牌面采用 1909 年出版的韦特塔罗（Rider–Waite–Smith Tarot），由 Pamela Colman Smith 绘制，现已进入公有领域。本程序在原作线稿基础上重新着色为“金线夜幕”风格；牌背与界面图形为原创设计。</view>
+  </view>
+
+  <view class="foot">愿星光照亮你前行的路 ✦</view>
+  <view class="safe-bottom"></view>
+</view>

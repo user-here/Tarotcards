@@ -1,0 +1,90 @@
+<wxs module="touch" src="./wheel.wxs"></wxs>
+<cosmos />
+<nav-bar title="{{spread.name}}" />
+
+<!-- 洗牌 / 切牌 -->
+<view wx:if="{{phase === 'shuffle' || phase === 'cut' || phase === 'cutting'}}" class="stage">
+  <view class="stage-q serif" wx:if="{{question}}">“{{question}}”</view>
+  <view class="pile {{phase}}" bindtap="onCut">
+    <view class="pile-glow"></view>
+    <view class="pc c1"><image src="/assets/card-back.jpg" mode="aspectFill" /></view>
+    <view class="pc c2"><image src="/assets/card-back.jpg" mode="aspectFill" /></view>
+    <view class="pc c3"><image src="/assets/card-back.jpg" mode="aspectFill" /></view>
+    <view class="pc c4"><image src="/assets/card-back.jpg" mode="aspectFill" /></view>
+    <view class="pc c5"><image src="/assets/card-back.jpg" mode="aspectFill" /></view>
+  </view>
+  <view class="stage-tip">
+    <block wx:if="{{phase === 'shuffle'}}">
+      <view class="tip-main serif">正在洗牌</view>
+      <view class="tip-sub">请在心中默念你的问题</view>
+    </block>
+    <block wx:elif="{{phase === 'cut'}}">
+      <view class="tip-main serif glow">轻触牌堆 · 切牌</view>
+      <view class="tip-sub">将你的能量注入牌中</view>
+    </block>
+    <block wx:else>
+      <view class="tip-main serif">牌已就绪</view>
+      <view class="tip-sub">命运之轮即将展开</view>
+    </block>
+  </view>
+</view>
+
+<!-- 选牌 -->
+<block wx:if="{{phase === 'pick'}}">
+  <view class="pick-head fade-in">
+    <view class="pick-title serif">凭直觉选出 <text class="gold-text">{{total}}</text> 张牌</view>
+    <view class="pick-sub">左右滑动转动牌轮，轻触你有感应的那一张</view>
+    <view class="tray">
+      <view
+        wx:for="{{tray}}"
+        wx:key="name"
+        class="tray-slot {{item.filled ? 'filled' : ''}}"
+        style="width: {{trayW}}rpx; height: {{trayW * 1.74}}rpx;"
+      >
+        <image wx:if="{{item.filled}}" class="tray-img" src="/assets/card-back.jpg" mode="aspectFill" />
+        <text wx:else class="tray-num">{{index + 1}}</text>
+        <view wx:if="{{!trayCompact}}" class="tray-name">{{item.name}}</view>
+      </view>
+    </view>
+    <view class="pick-count">{{picked}} / {{total}}</view>
+  </view>
+
+  <view
+    class="wheel-zone"
+    data-k="{{degPerPx}}"
+    bindtouchstart="{{touch.start}}"
+    bindtouchmove="{{touch.move}}"
+    bindtouchend="{{touch.end}}"
+    bindtouchcancel="{{touch.end}}"
+    change:prop="{{touch.kick}}"
+    prop="{{kick}}"
+  >
+    <view class="wheel">
+      <view
+        wx:for="{{wheelCards}}"
+        wx:key="i"
+        class="wc"
+        style="transform: rotate({{item.angle}}deg);"
+      >
+        <view class="wc-in {{item.picked ? 'picked' : ''}}" data-i="{{item.i}}" bindtap="onPick">
+          <image class="wc-img" src="/assets/card-back.jpg" mode="aspectFill" lazy-load="{{false}}" />
+        </view>
+      </view>
+    </view>
+    <view class="wheel-hint">‹ 滑动 ›</view>
+  </view>
+</block>
+
+<!-- 揭示 -->
+<scroll-view wx:if="{{phase === 'reveal'}}" class="reveal" scroll-y style="height: {{scrollH}}px;">
+  <view class="reveal-head fade-in">
+    <view class="pick-title serif">{{flippedCount < total ? '依次轻触，揭示牌面' : '牌面已全部揭示'}}</view>
+    <view class="pick-sub" wx:if="{{question}}">“{{question}}”</view>
+  </view>
+  <spread-layout spread-id="{{spread.id}}" cards="{{cards}}" bind:cardtap="onFlip" />
+  <view class="reveal-actions">
+    <button wx:if="{{flippedCount < total}}" class="btn btn-ghost" hover-class="btn-hover" bindtap="flipAll">全部翻开</button>
+    <button wx:else class="btn btn-primary fade-up" hover-class="btn-hover" bindtap="viewResult">查看解读</button>
+  </view>
+  <view class="safe-bottom"></view>
+</scroll-view>

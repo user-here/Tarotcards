@@ -1,0 +1,262 @@
+@import './styles/icons.scss';
+
+page {
+  --bg: #0c0920;
+  --bg-2: #161132;
+  --panel: rgba(255, 255, 255, 0.045);
+  --panel-2: rgba(255, 255, 255, 0.08);
+  --line: rgba(230, 196, 126, 0.22);
+  --line-soft: rgba(255, 255, 255, 0.08);
+  --gold: #e6c47e;
+  --gold-2: #f7e0a9;
+  --gold-3: #b8914f;
+  --text: #efeaff;
+  --text-2: #c9c0ea;
+  --muted: #8e84b8;
+  --purple: #8566e8;
+  --rose: #e6879f;
+  --serif: 'Songti SC', 'STSong', 'Noto Serif SC', 'Source Han Serif SC', serif;
+  background: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, 'PingFang SC', 'Helvetica Neue', 'Microsoft YaHei', sans-serif;
+  font-size: 28rpx;
+  line-height: 1.6;
+}
+
+view, text, image, button, input, textarea, scroll-view {
+  box-sizing: border-box;
+}
+
+/* ---------- 星空背景 ---------- */
+.cosmos {
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse 120% 40% at 50% 0%, rgba(120, 96, 210, 0.16), transparent 70%),
+    linear-gradient(180deg, #120e2a 0%, #0d0a21 50%, #0b0919 100%);
+}
+
+.cosmos .stars {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.55;
+}
+
+/* ---------- 通用排版 ---------- */
+.serif {
+  font-family: var(--serif);
+}
+
+.gold-text {
+  color: var(--gold-2);
+}
+
+.muted {
+  color: var(--muted);
+}
+
+.section-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 56rpx 0 24rpx;
+}
+
+.section-title .t {
+  font-family: var(--serif);
+  font-size: 34rpx;
+  font-weight: 600;
+  letter-spacing: 4rpx;
+  color: var(--text);
+  display: flex;
+  align-items: center;
+}
+
+.section-title .t::before {
+  content: '';
+  width: 8rpx;
+  height: 8rpx;
+  margin-right: 16rpx;
+  background: var(--gold);
+  transform: rotate(45deg);
+}
+
+.section-title .more {
+  font-size: 24rpx;
+  color: var(--muted);
+}
+
+.panel {
+  background: var(--panel);
+  border: 1rpx solid var(--line-soft);
+  border-radius: 28rpx;
+}
+
+.divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--gold-3);
+  font-size: 20rpx;
+  letter-spacing: 8rpx;
+  margin: 40rpx 0;
+}
+
+.divider::before,
+.divider::after {
+  content: '';
+  flex: 1;
+  height: 1rpx;
+  background: linear-gradient(90deg, transparent, var(--line));
+  margin: 0 20rpx;
+}
+
+.divider::after {
+  background: linear-gradient(90deg, var(--line), transparent);
+}
+
+/* ---------- 按钮 ---------- */
+button.btn,
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 96rpx;
+  margin: 0;
+  padding: 0 48rpx;
+  border-radius: 48rpx;
+  font-size: 30rpx;
+  font-weight: 600;
+  letter-spacing: 4rpx;
+  line-height: 1;
+}
+
+button.btn::after {
+  border: none;
+}
+
+.btn-primary,
+button.btn-primary {
+  color: #2a1d08;
+  background: linear-gradient(135deg, #f8e3b0 0%, #e6c47e 45%, #c99a52 100%);
+  box-shadow: 0 12rpx 40rpx rgba(230, 196, 126, 0.28);
+}
+
+.btn-ghost,
+button.btn-ghost {
+  color: var(--gold-2);
+  background: rgba(230, 196, 126, 0.06);
+  border: 1rpx solid rgba(230, 196, 126, 0.45);
+}
+
+.btn-hover {
+  opacity: 0.82;
+  transform: scale(0.98);
+}
+
+.btn[disabled],
+button.btn[disabled] {
+  opacity: 0.4;
+}
+
+.tap {
+  transition: transform 0.15s, opacity 0.15s;
+}
+
+.tap-hover {
+  transform: scale(0.97);
+  opacity: 0.85;
+}
+
+/* ---------- 标签 ---------- */
+.chip {
+  display: inline-flex;
+  align-items: center;
+  height: 44rpx;
+  padding: 0 18rpx;
+  margin: 0 12rpx 12rpx 0;
+  border-radius: 22rpx;
+  font-size: 22rpx;
+  color: var(--text-2);
+  background: var(--panel-2);
+}
+
+.tag-up,
+.tag-rev {
+  display: inline-flex;
+  align-items: center;
+  height: 36rpx;
+  padding: 0 14rpx;
+  border-radius: 8rpx;
+  font-size: 20rpx;
+  letter-spacing: 2rpx;
+}
+
+.tag-up {
+  color: #2a1d08;
+  background: var(--gold);
+}
+
+.tag-rev {
+  color: #fff;
+  background: rgba(230, 135, 159, 0.85);
+}
+
+/* ---------- 星级 ---------- */
+.stars-row {
+  display: flex;
+  align-items: center;
+}
+
+.stars-row .icon {
+  width: 30rpx;
+  height: 30rpx;
+  margin-right: 4rpx;
+}
+
+/* ---------- 动效 ---------- */
+.fade-up {
+  animation: fadeUp 0.7s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(40rpx); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.fade-in {
+  animation: fadeIn 0.6s ease both;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.d1 { animation-delay: 0.08s; }
+.d2 { animation-delay: 0.16s; }
+.d3 { animation-delay: 0.24s; }
+.d4 { animation-delay: 0.32s; }
+.d5 { animation-delay: 0.4s; }
+.d6 { animation-delay: 0.48s; }
+
+.safe-bottom {
+  height: calc(40rpx + env(safe-area-inset-bottom));
+}
+
+.disclaimer {
+  text-align: center;
+  font-size: 22rpx;
+  color: rgba(142, 132, 184, 0.7);
+  padding: 32rpx 40rpx 0;
+  line-height: 1.7;
+}

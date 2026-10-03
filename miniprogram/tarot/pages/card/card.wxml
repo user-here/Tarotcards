@@ -1,0 +1,44 @@
+<cosmos />
+<nav-bar title="{{scrolled ? card.name : ''}}" solid="{{scrolled}}" />
+
+<view wx:if="{{card}}" class="wrap">
+  <view class="stage">
+    <view class="halo"></view>
+    <view class="big fade-in" bindtap="toggle" bindlongpress="preview">
+      <image class="img {{rev ? 'rev' : ''}}" src="{{card.image}}" mode="aspectFill" />
+    </view>
+    <view class="hint">轻触切换正逆位 · 长按查看大图</view>
+  </view>
+
+  <view class="title-box">
+    <view class="suit">{{card.suitName}} · {{card.element}}</view>
+    <view class="name serif">{{card.name}}</view>
+    <view class="en">{{card.en}}</view>
+  </view>
+
+  <view class="seg">
+    <view class="seg-item {{!rev ? 'on' : ''}}" data-rev="0" bindtap="setOrientation">正位</view>
+    <view class="seg-item {{rev ? 'on' : ''}}" data-rev="1" bindtap="setOrientation">逆位</view>
+  </view>
+
+  <view class="kw">
+    <text wx:for="{{rev ? card.kwRev : card.kw}}" wx:key="*this" class="chip">{{item}}</text>
+  </view>
+
+  <view wx:for="{{sections}}" wx:key="title" class="sec panel">
+    <view class="sec-title serif">{{item.title}}</view>
+    <view class="sec-text">{{item.text}}</view>
+  </view>
+
+  <view class="advice">
+    <view class="advice-l"><view class="icon icon-spark"></view>这张牌想对你说</view>
+    <view class="advice-t serif">{{card.advice}}</view>
+  </view>
+
+  <view class="pager">
+    <view class="pg {{prev ? '' : 'off'}}" data-id="{{prev}}" bindtap="go">‹ 上一张</view>
+    <view class="pg-mid">{{card.index + 1}} / 78</view>
+    <view class="pg {{next ? '' : 'off'}}" data-id="{{next}}" bindtap="go">下一张 ›</view>
+  </view>
+  <view class="safe-bottom"></view>
+</view>

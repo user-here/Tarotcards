@@ -1,0 +1,132 @@
+.wrap {
+  padding: 0 30rpx;
+}
+
+.top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8rpx 6rpx 24rpx;
+  font-size: 24rpx;
+}
+
+.clear {
+  color: var(--rose);
+  padding: 8rpx 0 8rpx 24rpx;
+}
+
+.rec {
+  display: flex;
+  align-items: center;
+  padding: 28rpx;
+  margin-bottom: 20rpx;
+}
+
+.fan {
+  position: relative;
+  width: 150rpx;
+  height: 150rpx;
+  flex-shrink: 0;
+}
+
+.fan-img {
+  position: absolute;
+  top: 6rpx;
+  left: 42rpx;
+  width: 78rpx;
+  height: 136rpx;
+  border-radius: 8rpx;
+  border: 2rpx solid rgba(230, 196, 126, 0.55);
+  box-shadow: 0 6rpx 16rpx rgba(0, 0, 0, 0.5);
+}
+
+.fan-img.f0 { z-index: 3; }
+.fan-img.f1 { transform: translateX(-30rpx) rotate(-12deg); z-index: 2; }
+.fan-img.f2 { transform: translateX(30rpx) rotate(12deg); z-index: 1; }
+.fan-img.f0.rev { transform: rotate(180deg); }
+.fan-img.f1.rev { transform: translateX(-30rpx) rotate(168deg); }
+.fan-img.f2.rev { transform: translateX(30rpx) rotate(192deg); }
+
+.rec-body {
+  flex: 1;
+  min-width: 0;
+  margin-left: 24rpx;
+}
+
+.rec-meta {
+  display: flex;
+  align-items: center;
+}
+
+.rec-spread {
+  font-size: 22rpx;
+  color: var(--gold);
+}
+
+.rec-topic {
+  margin-left: 12rpx;
+  padding: 0 12rpx;
+  border-radius: 6rpx;
+  font-size: 20rpx;
+  color: var(--text-2);
+  background: var(--panel-2);
+}
+
+.rec-q {
+  margin-top: 8rpx;
+  font-size: 30rpx;
+  font-weight: 600;
+  color: var(--text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.rec-names {
+  margin-top: 4rpx;
+  font-size: 22rpx;
+  color: var(--text-2);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.rec-time {
+  margin-top: 6rpx;
+  font-size: 22rpx;
+  color: var(--muted);
+}
+
+.empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 120rpx;
+}
+
+.empty-img {
+  width: 200rpx;
+  height: 348rpx;
+  border-radius: 16rpx;
+  opacity: 0.75;
+  border: 2rpx solid rgba(230, 196, 126, 0.5);
+  transform: rotate(-6deg);
+  box-shadow: 0 20rpx 60rpx rgba(0, 0, 0, 0.5);
+}
+
+.empty-t {
+  margin-top: 56rpx;
+  font-size: 34rpx;
+  font-weight: 600;
+}
+
+.empty-s {
+  margin-top: 8rpx;
+  font-size: 24rpx;
+  color: var(--muted);
+}
+
+.empty-btn {
+  margin-top: 56rpx;
+  width: 420rpx;
+}

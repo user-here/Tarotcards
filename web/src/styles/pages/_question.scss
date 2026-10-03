@@ -1,0 +1,276 @@
+/* 由 miniprogram/tarot/pages/question/question.scss 转换 */
+.p-question {
+  .wrap {
+    padding: 0 calc(40 * var(--rpx));
+  }
+
+  .intro {
+    padding: calc(8 * var(--rpx)) 0 calc(12 * var(--rpx));
+  }
+
+  .intro-sub {
+    font-size: calc(22 * var(--rpx));
+    letter-spacing: calc(4 * var(--rpx));
+    color: var(--gold-3);
+    text-transform: uppercase;
+  }
+
+  .intro-desc {
+    margin-top: calc(12 * var(--rpx));
+    font-size: calc(30 * var(--rpx));
+    line-height: 1.7;
+    color: var(--text);
+  }
+
+  .intro-pos {
+    display: flex;
+    align-items: center;
+    margin-top: calc(18 * var(--rpx));
+    font-size: calc(24 * var(--rpx));
+    color: var(--gold);
+  }
+
+  .intro-pos .icon {
+    width: calc(24 * var(--rpx));
+    height: calc(24 * var(--rpx));
+    margin-right: calc(12 * var(--rpx));
+  }
+
+  .block {
+    margin-top: calc(52 * var(--rpx));
+  }
+
+  .label {
+    font-size: calc(32 * var(--rpx));
+    font-weight: 600;
+    letter-spacing: calc(2 * var(--rpx));
+    margin-bottom: calc(24 * var(--rpx));
+  }
+
+  .label-opt {
+    font-size: calc(22 * var(--rpx));
+    color: var(--muted);
+    font-weight: 400;
+  }
+
+  .topics {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .topic {
+    width: calc(155 * var(--rpx));
+    height: calc(76 * var(--rpx));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: calc(38 * var(--rpx));
+    font-size: calc(26 * var(--rpx));
+    color: var(--text-2);
+    background: var(--panel);
+    border: calc(1 * var(--rpx)) solid var(--line-soft);
+    transition: all 0.25s;
+  }
+
+  .topic.on {
+    color: #2a1d08;
+    font-weight: 600;
+    background: linear-gradient(135deg, #f8e3b0, #e6c47e 55%, #c99a52);
+    border-color: transparent;
+    box-shadow: 0 calc(8 * var(--rpx)) calc(28 * var(--rpx)) rgba(230, 196, 126, 0.3);
+  }
+
+  .field {
+    padding: calc(28 * var(--rpx)) calc(28 * var(--rpx)) calc(16 * var(--rpx));
+  }
+
+  .textarea {
+    width: 100%;
+    min-height: calc(120 * var(--rpx));
+    font-size: calc(30 * var(--rpx));
+    line-height: 1.6;
+    color: var(--text);
+  }
+
+  .ph {
+    color: rgba(142, 132, 184, 0.65);
+  }
+
+  .count {
+    text-align: right;
+    font-size: calc(22 * var(--rpx));
+    color: var(--muted);
+  }
+
+  .options {
+    margin-top: calc(20 * var(--rpx));
+  }
+
+  .opt {
+    display: flex;
+    align-items: center;
+    height: calc(96 * var(--rpx));
+    padding: 0 calc(28 * var(--rpx));
+    margin-bottom: calc(16 * var(--rpx));
+  }
+
+  .opt-k {
+    width: calc(48 * var(--rpx));
+    height: calc(48 * var(--rpx));
+    line-height: calc(48 * var(--rpx));
+    text-align: center;
+    border-radius: 50%;
+    font-size: calc(26 * var(--rpx));
+    font-weight: 700;
+    color: #2a1d08;
+    background: var(--gold);
+    margin-right: calc(20 * var(--rpx));
+  }
+
+  .opt-input {
+    flex: 1;
+    font-size: calc(28 * var(--rpx));
+    color: var(--text);
+  }
+
+  .tips {
+    margin-top: calc(52 * var(--rpx));
+    padding: calc(28 * var(--rpx)) calc(32 * var(--rpx));
+    border-radius: calc(24 * var(--rpx));
+    background: rgba(133, 102, 232, 0.1);
+    border: calc(1 * var(--rpx)) dashed rgba(133, 102, 232, 0.35);
+  }
+
+  .tips-title {
+    font-size: calc(26 * var(--rpx));
+    color: var(--gold);
+    margin-bottom: calc(8 * var(--rpx));
+  }
+
+  .tip {
+    font-size: calc(24 * var(--rpx));
+    line-height: 1.8;
+    color: var(--text-2);
+  }
+
+  .bottom-space {
+    height: calc(calc(220 * var(--rpx)) + env(safe-area-inset-bottom));
+  }
+
+  .footer {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: calc(24 * var(--rpx)) calc(40 * var(--rpx)) calc(calc(24 * var(--rpx)) + env(safe-area-inset-bottom));
+    background: linear-gradient(180deg, rgba(12, 9, 32, 0), rgba(12, 9, 32, 0.95) 40%);
+  }
+
+  /* 冥想层 */
+  .meditate {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 200;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: radial-gradient(circle at 50% 42%, rgba(60, 40, 130, 0.96), rgba(8, 6, 22, 0.98) 70%);
+  }
+
+  .breath {
+    position: relative;
+    width: calc(360 * var(--rpx));
+    height: calc(360 * var(--rpx));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .ring {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: calc(2 * var(--rpx)) solid rgba(230, 196, 126, 0.5);
+    animation: question-breathe 3.6s ease-in-out infinite;
+  }
+
+  .ring.r2 {
+    animation-delay: 0.4s;
+    border-color: rgba(185, 139, 255, 0.4);
+  }
+
+  .ring.r3 {
+    animation-delay: 0.8s;
+    border-color: rgba(230, 196, 126, 0.25);
+  }
+
+
+
+  .core {
+    width: calc(150 * var(--rpx));
+    height: calc(150 * var(--rpx));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: radial-gradient(circle, rgba(230, 196, 126, 0.35), rgba(230, 196, 126, 0.05) 70%);
+    box-shadow: 0 0 calc(80 * var(--rpx)) rgba(230, 196, 126, 0.35);
+    animation: question-pulse 3.6s ease-in-out infinite;
+  }
+
+  .core .icon {
+    width: calc(64 * var(--rpx));
+    height: calc(64 * var(--rpx));
+  }
+
+
+
+  .m-title {
+    margin-top: calc(80 * var(--rpx));
+    font-size: calc(48 * var(--rpx));
+    letter-spacing: calc(16 * var(--rpx));
+    color: var(--gold-2);
+  }
+
+  .m-text {
+    margin-top: calc(16 * var(--rpx));
+    font-size: calc(28 * var(--rpx));
+    color: var(--text-2);
+    letter-spacing: calc(4 * var(--rpx));
+  }
+
+  .m-question {
+    margin-top: calc(36 * var(--rpx));
+    padding: 0 calc(80 * var(--rpx));
+    text-align: center;
+    font-size: calc(28 * var(--rpx));
+    color: var(--text);
+    font-family: var(--serif);
+  }
+
+  .m-skip {
+    position: absolute;
+    bottom: calc(calc(80 * var(--rpx)) + env(safe-area-inset-bottom));
+    font-size: calc(22 * var(--rpx));
+    color: var(--muted);
+    letter-spacing: calc(4 * var(--rpx));
+  }
+}
+
+@keyframes question-breathe {
+  0% { transform: scale(0.45); opacity: 0; }
+  40% { opacity: 1; }
+  100% { transform: scale(1.25); opacity: 0; }
+}
+
+@keyframes question-pulse {
+  0%, 100% { transform: scale(0.9); }
+  50% { transform: scale(1.08); }
+}

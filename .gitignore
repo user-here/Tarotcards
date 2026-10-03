@@ -1,0 +1,5 @@
+.DS_Store
+node_modules
+# 微信开发者工具的个人配置
+project.private.config.json
+.claude

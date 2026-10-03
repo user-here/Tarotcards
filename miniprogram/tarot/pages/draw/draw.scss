@@ -1,0 +1,304 @@
+page {
+  height: 100%;
+  overflow: hidden;
+}
+
+/* ---------- 洗牌舞台 ---------- */
+.stage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 60rpx;
+}
+
+.stage-q {
+  padding: 0 60rpx;
+  text-align: center;
+  font-size: 30rpx;
+  color: var(--text-2);
+  min-height: 48rpx;
+}
+
+.pile {
+  position: relative;
+  width: 280rpx;
+  height: 487rpx;
+  margin-top: 90rpx;
+}
+
+.pile-glow {
+  position: absolute;
+  left: -120rpx;
+  top: -100rpx;
+  right: -120rpx;
+  bottom: -100rpx;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(230, 196, 126, 0.28), transparent 60%);
+  animation: glow 2.4s ease-in-out infinite;
+}
+
+@keyframes glow {
+  0%, 100% { opacity: 0.6; transform: scale(0.95); }
+  50% { opacity: 1; transform: scale(1.05); }
+}
+
+.pc {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 16rpx;
+  overflow: hidden;
+  border: 2rpx solid rgba(230, 196, 126, 0.6);
+  box-shadow: 0 16rpx 40rpx rgba(0, 0, 0, 0.5);
+}
+
+.pc image {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.c1 { transform: translate(-8rpx, 8rpx) rotate(-3deg); }
+.c2 { transform: translate(-4rpx, 4rpx) rotate(-1.5deg); }
+.c3 { transform: translate(0, 0); }
+.c4 { transform: translate(4rpx, -4rpx) rotate(1.5deg); }
+.c5 { transform: translate(8rpx, -8rpx) rotate(3deg); }
+
+/* 洗牌：牌在左右两侧交错穿插 */
+.pile.shuffle .c1 { animation: riffleL 1.2s ease-in-out infinite; }
+.pile.shuffle .c2 { animation: riffleR 1.2s ease-in-out 0.1s infinite; }
+.pile.shuffle .c3 { animation: riffleL 1.2s ease-in-out 0.2s infinite; }
+.pile.shuffle .c4 { animation: riffleR 1.2s ease-in-out 0.3s infinite; }
+.pile.shuffle .c5 { animation: riffleL 1.2s ease-in-out 0.4s infinite; }
+
+@keyframes riffleL {
+  0%, 100% { transform: translate(0, 0) rotate(0); }
+  45% { transform: translate(-190rpx, 20rpx) rotate(-14deg); }
+  55% { transform: translate(-190rpx, 20rpx) rotate(-14deg); }
+}
+
+@keyframes riffleR {
+  0%, 100% { transform: translate(0, 0) rotate(0); }
+  45% { transform: translate(190rpx, 20rpx) rotate(14deg); }
+  55% { transform: translate(190rpx, 20rpx) rotate(14deg); }
+}
+
+.pile.cut {
+  animation: breatheCard 2s ease-in-out infinite;
+}
+
+@keyframes breatheCard {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.04); }
+}
+
+/* 切牌：上半叠移开再落到底部 */
+.pile.cutting .c4,
+.pile.cutting .c5 {
+  animation: cutTop 0.9s cubic-bezier(0.5, 0, 0.3, 1) forwards;
+}
+
+.pile.cutting .c1,
+.pile.cutting .c2,
+.pile.cutting .c3 {
+  animation: cutBottom 0.9s cubic-bezier(0.5, 0, 0.3, 1) forwards;
+}
+
+@keyframes cutTop {
+  0% { transform: translate(0, 0); z-index: 5; }
+  45% { transform: translate(220rpx, -60rpx) rotate(8deg); z-index: 5; }
+  55% { transform: translate(220rpx, -60rpx) rotate(8deg); z-index: 0; }
+  100% { transform: translate(0, 0); z-index: 0; opacity: 0.6; }
+}
+
+@keyframes cutBottom {
+  0% { transform: translate(0, 0); }
+  45% { transform: translate(-60rpx, 30rpx) rotate(-4deg); }
+  100% { transform: translate(0, 0) scale(0.92); opacity: 0.7; }
+}
+
+.stage-tip {
+  margin-top: 120rpx;
+  text-align: center;
+}
+
+.tip-main {
+  font-size: 36rpx;
+  letter-spacing: 10rpx;
+  color: var(--gold-2);
+}
+
+.tip-main.glow {
+  animation: textGlow 2s ease-in-out infinite;
+}
+
+@keyframes textGlow {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; text-shadow: 0 0 24rpx rgba(230, 196, 126, 0.8); }
+}
+
+.tip-sub {
+  margin-top: 12rpx;
+  font-size: 24rpx;
+  color: var(--muted);
+  letter-spacing: 4rpx;
+}
+
+/* ---------- 选牌 ---------- */
+.pick-head {
+  padding: 16rpx 30rpx 0;
+  text-align: center;
+}
+
+.pick-title {
+  font-size: 36rpx;
+  letter-spacing: 4rpx;
+  color: var(--text);
+}
+
+.pick-sub {
+  margin-top: 8rpx;
+  font-size: 24rpx;
+  color: var(--muted);
+}
+
+.tray {
+  display: flex;
+  justify-content: center;
+  margin-top: 44rpx;
+  min-height: 240rpx;
+}
+
+.tray-slot {
+  position: relative;
+  margin: 0 6rpx;
+  border-radius: 10rpx;
+  border: 2rpx dashed rgba(230, 196, 126, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: border-color 0.3s;
+}
+
+.tray-slot.filled {
+  border: 2rpx solid rgba(230, 196, 126, 0.7);
+  box-shadow: 0 0 24rpx rgba(230, 196, 126, 0.3);
+}
+
+.tray-img {
+  width: 100%;
+  height: 100%;
+  border-radius: 8rpx;
+  animation: pop 0.45s cubic-bezier(0.2, 0.9, 0.3, 1.4) both;
+}
+
+@keyframes pop {
+  from { opacity: 0; transform: translateY(160rpx) scale(0.5); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.tray-num {
+  font-size: 24rpx;
+  color: rgba(230, 196, 126, 0.5);
+  font-family: var(--serif);
+}
+
+.tray-name {
+  position: absolute;
+  top: 100%;
+  left: -20rpx;
+  right: -20rpx;
+  margin-top: 8rpx;
+  text-align: center;
+  font-size: 20rpx;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+.pick-count {
+  margin-top: 56rpx;
+  font-size: 26rpx;
+  letter-spacing: 6rpx;
+  color: var(--gold);
+  font-family: var(--serif);
+}
+
+/* 牌轮 */
+.wheel-zone {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 600rpx;
+  overflow: hidden;
+  animation: zoneIn 0.9s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+@keyframes zoneIn {
+  from { transform: translateY(100%); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.wheel {
+  position: absolute;
+  left: 50%;
+  top: 110rpx;
+  width: 1440rpx;
+  height: 1440rpx;
+  margin-left: -720rpx;
+  transform: rotate(0deg);
+}
+
+.wc {
+  position: absolute;
+  left: 665rpx;
+  top: 0;
+  width: 110rpx;
+  height: 191rpx;
+  transform-origin: 55rpx 720rpx;
+}
+
+.wc-in {
+  width: 100%;
+  height: 100%;
+  border-radius: 10rpx;
+  overflow: hidden;
+  border: 2rpx solid rgba(230, 196, 126, 0.55);
+  box-shadow: -6rpx 8rpx 20rpx rgba(0, 0, 0, 0.5);
+  transition: transform 0.45s cubic-bezier(0.3, 0.8, 0.3, 1), opacity 0.45s;
+}
+
+.wc-in.picked {
+  transform: translateY(-160rpx) scale(0.8);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.wc-img {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.wheel-hint {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: calc(24rpx + env(safe-area-inset-bottom));
+  text-align: center;
+  font-size: 22rpx;
+  letter-spacing: 8rpx;
+  color: rgba(230, 196, 126, 0.55);
+}
+
+/* ---------- 揭示 ---------- */
+.reveal-head {
+  padding: 16rpx 30rpx 40rpx;
+  text-align: center;
+}
+
+.reveal-actions {
+  padding: 80rpx 80rpx 0;
+}

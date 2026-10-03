@@ -1,0 +1,43 @@
+<cosmos />
+<nav-bar title="塔罗图鉴" solid="{{true}}" />
+
+<view class="tabs-wrap" style="top: {{navTop}}px;">
+  <view class="tabs">
+    <view
+      wx:for="{{suits}}"
+      wx:key="key"
+      class="tab {{current === item.key ? 'on' : ''}}"
+      data-key="{{item.key}}"
+      bindtap="switchSuit"
+    >
+      <text>{{item.name}}</text>
+    </view>
+  </view>
+</view>
+
+<view class="wrap">
+  <view class="intro">
+    <view class="desc">{{desc}}</view>
+    <view class="collect">已收集 <text class="gold-text">{{seenCount}}</text> / {{total}}</view>
+  </view>
+
+  <view class="grid">
+    <view
+      wx:for="{{list}}"
+      wx:key="id"
+      class="cell fade-up tap"
+      hover-class="tap-hover"
+      style="animation-delay: {{index * 0.03}}s;"
+      data-id="{{item.id}}"
+      bindtap="open"
+    >
+      <view class="thumb">
+        <image class="img" src="{{item.image}}" mode="aspectFill" lazy-load />
+        <view wx:if="{{item.seen}}" class="seen"><view class="icon icon-spark"></view></view>
+      </view>
+      <view class="cell-name">{{item.name}}</view>
+    </view>
+  </view>
+  <view class="foot-tip">在占卜或每日一牌中抽到的牌会被点亮 ✦</view>
+  <view class="safe-bottom"></view>
+</view>

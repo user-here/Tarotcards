@@ -1,0 +1,320 @@
+/* 由 miniprogram/tarot/pages/draw/draw.scss 转换 */
+.p-draw {
+  /* ---------- 洗牌舞台 ---------- */
+  .stage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: calc(60 * var(--rpx));
+  }
+
+  .stage-q {
+    padding: 0 calc(60 * var(--rpx));
+    text-align: center;
+    font-size: calc(30 * var(--rpx));
+    color: var(--text-2);
+    min-height: calc(48 * var(--rpx));
+  }
+
+  .pile {
+    position: relative;
+    width: calc(280 * var(--rpx));
+    height: calc(487 * var(--rpx));
+    margin-top: calc(90 * var(--rpx));
+  }
+
+  .pile-glow {
+    position: absolute;
+    left: calc(-120 * var(--rpx));
+    top: calc(-100 * var(--rpx));
+    right: calc(-120 * var(--rpx));
+    bottom: calc(-100 * var(--rpx));
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(230, 196, 126, 0.28), transparent 60%);
+    animation: draw-glow 2.4s ease-in-out infinite;
+  }
+
+
+
+  .pc {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: calc(16 * var(--rpx));
+    overflow: hidden;
+    border: calc(2 * var(--rpx)) solid rgba(230, 196, 126, 0.6);
+    box-shadow: 0 calc(16 * var(--rpx)) calc(40 * var(--rpx)) rgba(0, 0, 0, 0.5);
+  }
+
+  .pc img {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+
+  .c1 { transform: translate(calc(-8 * var(--rpx)), calc(8 * var(--rpx))) rotate(-3deg); }
+  .c2 { transform: translate(calc(-4 * var(--rpx)), calc(4 * var(--rpx))) rotate(-1.5deg); }
+  .c3 { transform: translate(0, 0); }
+  .c4 { transform: translate(calc(4 * var(--rpx)), calc(-4 * var(--rpx))) rotate(1.5deg); }
+  .c5 { transform: translate(calc(8 * var(--rpx)), calc(-8 * var(--rpx))) rotate(3deg); }
+
+  /* 洗牌：牌在左右两侧交错穿插 */
+  .pile.shuffle .c1 { animation: draw-riffleL 1.2s ease-in-out infinite; }
+  .pile.shuffle .c2 { animation: draw-riffleR 1.2s ease-in-out 0.1s infinite; }
+  .pile.shuffle .c3 { animation: draw-riffleL 1.2s ease-in-out 0.2s infinite; }
+  .pile.shuffle .c4 { animation: draw-riffleR 1.2s ease-in-out 0.3s infinite; }
+  .pile.shuffle .c5 { animation: draw-riffleL 1.2s ease-in-out 0.4s infinite; }
+
+
+
+
+
+  .pile.cut {
+    animation: draw-breatheCard 2s ease-in-out infinite;
+  }
+
+
+
+  /* 切牌：上半叠移开再落到底部 */
+  .pile.cutting .c4,
+  .pile.cutting .c5 {
+    animation: draw-cutTop 0.9s cubic-bezier(0.5, 0, 0.3, 1) forwards;
+  }
+
+  .pile.cutting .c1,
+  .pile.cutting .c2,
+  .pile.cutting .c3 {
+    animation: draw-cutBottom 0.9s cubic-bezier(0.5, 0, 0.3, 1) forwards;
+  }
+
+
+
+
+
+  .stage-tip {
+    margin-top: calc(120 * var(--rpx));
+    text-align: center;
+  }
+
+  .tip-main {
+    font-size: calc(36 * var(--rpx));
+    letter-spacing: calc(10 * var(--rpx));
+    color: var(--gold-2);
+  }
+
+  .tip-main.glow {
+    animation: draw-textGlow 2s ease-in-out infinite;
+  }
+
+
+
+  .tip-sub {
+    margin-top: calc(12 * var(--rpx));
+    font-size: calc(24 * var(--rpx));
+    color: var(--muted);
+    letter-spacing: calc(4 * var(--rpx));
+  }
+
+  /* ---------- 选牌 ---------- */
+  .pick-head {
+    padding: calc(16 * var(--rpx)) calc(30 * var(--rpx)) 0;
+    text-align: center;
+  }
+
+  .pick-title {
+    font-size: calc(36 * var(--rpx));
+    letter-spacing: calc(4 * var(--rpx));
+    color: var(--text);
+  }
+
+  .pick-sub {
+    margin-top: calc(8 * var(--rpx));
+    font-size: calc(24 * var(--rpx));
+    color: var(--muted);
+  }
+
+  .tray {
+    display: flex;
+    justify-content: center;
+    margin-top: calc(44 * var(--rpx));
+    min-height: calc(240 * var(--rpx));
+  }
+
+  .tray-slot {
+    position: relative;
+    margin: 0 calc(6 * var(--rpx));
+    border-radius: calc(10 * var(--rpx));
+    border: calc(2 * var(--rpx)) dashed rgba(230, 196, 126, 0.35);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: border-color 0.3s;
+  }
+
+  .tray-slot.filled {
+    border: calc(2 * var(--rpx)) solid rgba(230, 196, 126, 0.7);
+    box-shadow: 0 0 calc(24 * var(--rpx)) rgba(230, 196, 126, 0.3);
+  }
+
+  .tray-img {
+    width: 100%;
+    height: 100%;
+    border-radius: calc(8 * var(--rpx));
+    animation: draw-pop 0.45s cubic-bezier(0.2, 0.9, 0.3, 1.4) both;
+  }
+
+
+
+  .tray-num {
+    font-size: calc(24 * var(--rpx));
+    color: rgba(230, 196, 126, 0.5);
+    font-family: var(--serif);
+  }
+
+  .tray-name {
+    position: absolute;
+    top: 100%;
+    left: calc(-20 * var(--rpx));
+    right: calc(-20 * var(--rpx));
+    margin-top: calc(8 * var(--rpx));
+    text-align: center;
+    font-size: calc(20 * var(--rpx));
+    color: var(--muted);
+    white-space: nowrap;
+  }
+
+  .pick-count {
+    margin-top: calc(56 * var(--rpx));
+    font-size: calc(26 * var(--rpx));
+    letter-spacing: calc(6 * var(--rpx));
+    color: var(--gold);
+    font-family: var(--serif);
+  }
+
+  /* 牌轮 */
+  .wheel-zone {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: calc(600 * var(--rpx));
+    overflow: hidden;
+    animation: draw-zoneIn 0.9s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  }
+
+
+
+  .wheel {
+    position: absolute;
+    left: 50%;
+    top: calc(110 * var(--rpx));
+    width: calc(1440 * var(--rpx));
+    height: calc(1440 * var(--rpx));
+    margin-left: calc(-720 * var(--rpx));
+    transform: rotate(0deg);
+  }
+
+  .wc {
+    position: absolute;
+    left: calc(665 * var(--rpx));
+    top: 0;
+    width: calc(110 * var(--rpx));
+    height: calc(191 * var(--rpx));
+    transform-origin: calc(55 * var(--rpx)) calc(720 * var(--rpx));
+  }
+
+  .wc-in {
+    width: 100%;
+    height: 100%;
+    border-radius: calc(10 * var(--rpx));
+    overflow: hidden;
+    border: calc(2 * var(--rpx)) solid rgba(230, 196, 126, 0.55);
+    box-shadow: calc(-6 * var(--rpx)) calc(8 * var(--rpx)) calc(20 * var(--rpx)) rgba(0, 0, 0, 0.5);
+    transition: transform 0.45s cubic-bezier(0.3, 0.8, 0.3, 1), opacity 0.45s;
+  }
+
+  .wc-in.picked {
+    transform: translateY(calc(-160 * var(--rpx))) scale(0.8);
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .wc-img {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+
+  .wheel-hint {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: calc(calc(24 * var(--rpx)) + env(safe-area-inset-bottom));
+    text-align: center;
+    font-size: calc(22 * var(--rpx));
+    letter-spacing: calc(8 * var(--rpx));
+    color: rgba(230, 196, 126, 0.55);
+  }
+
+  /* ---------- 揭示 ---------- */
+  .reveal-head {
+    padding: calc(16 * var(--rpx)) calc(30 * var(--rpx)) calc(40 * var(--rpx));
+    text-align: center;
+  }
+
+  .reveal-actions {
+    padding: calc(80 * var(--rpx)) calc(80 * var(--rpx)) 0;
+  }
+}
+
+@keyframes draw-glow {
+  0%, 100% { opacity: 0.6; transform: scale(0.95); }
+  50% { opacity: 1; transform: scale(1.05); }
+}
+
+@keyframes draw-riffleL {
+  0%, 100% { transform: translate(0, 0) rotate(0); }
+  45% { transform: translate(calc(-190 * var(--rpx)), calc(20 * var(--rpx))) rotate(-14deg); }
+  55% { transform: translate(calc(-190 * var(--rpx)), calc(20 * var(--rpx))) rotate(-14deg); }
+}
+
+@keyframes draw-riffleR {
+  0%, 100% { transform: translate(0, 0) rotate(0); }
+  45% { transform: translate(calc(190 * var(--rpx)), calc(20 * var(--rpx))) rotate(14deg); }
+  55% { transform: translate(calc(190 * var(--rpx)), calc(20 * var(--rpx))) rotate(14deg); }
+}
+
+@keyframes draw-breatheCard {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.04); }
+}
+
+@keyframes draw-cutTop {
+  0% { transform: translate(0, 0); z-index: 5; }
+  45% { transform: translate(calc(220 * var(--rpx)), calc(-60 * var(--rpx))) rotate(8deg); z-index: 5; }
+  55% { transform: translate(calc(220 * var(--rpx)), calc(-60 * var(--rpx))) rotate(8deg); z-index: 0; }
+  100% { transform: translate(0, 0); z-index: 0; opacity: 0.6; }
+}
+
+@keyframes draw-cutBottom {
+  0% { transform: translate(0, 0); }
+  45% { transform: translate(calc(-60 * var(--rpx)), calc(30 * var(--rpx))) rotate(-4deg); }
+  100% { transform: translate(0, 0) scale(0.92); opacity: 0.7; }
+}
+
+@keyframes draw-textGlow {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; text-shadow: 0 0 calc(24 * var(--rpx)) rgba(230, 196, 126, 0.8); }
+}
+
+@keyframes draw-pop {
+  from { opacity: 0; transform: translateY(calc(160 * var(--rpx))) scale(0.5); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes draw-zoneIn {
+  from { transform: translateY(100%); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}

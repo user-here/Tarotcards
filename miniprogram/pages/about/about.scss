@@ -1,0 +1,57 @@
+.wrap {
+  padding: 0 32rpx;
+}
+
+.logo-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 24rpx 0 48rpx;
+}
+
+.logo {
+  width: 150rpx;
+  height: 261rpx;
+  border-radius: 14rpx;
+  border: 2rpx solid rgba(230, 196, 126, 0.6);
+  box-shadow: 0 0 60rpx rgba(133, 102, 232, 0.45);
+}
+
+.name {
+  margin-top: 28rpx;
+  font-size: 40rpx;
+  font-weight: 700;
+  letter-spacing: 10rpx;
+  color: var(--gold-2);
+}
+
+.ver {
+  font-size: 22rpx;
+  color: var(--muted);
+}
+
+.sec {
+  padding: 32rpx;
+  margin-bottom: 20rpx;
+}
+
+.t {
+  font-size: 30rpx;
+  font-weight: 600;
+  color: var(--gold-2);
+}
+
+.p {
+  margin-top: 12rpx;
+  font-size: 26rpx;
+  line-height: 1.85;
+  color: var(--text-2);
+}
+
+.foot {
+  margin-top: 40rpx;
+  text-align: center;
+  font-size: 24rpx;
+  color: var(--muted);
+  letter-spacing: 4rpx;
+}
